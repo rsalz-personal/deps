@@ -1,0 +1,58 @@
+#! /usr/bin/env python3
+
+import csv, re, sys
+
+name = "compdeps.csv"
+
+pat = re.compile(".*\[(.*)\]")
+fix = lambda s: s.replace(' ', '-').replace('-+-', '+')
+
+# Header columns
+sysdict = dict()
+syslist = []
+
+# Parse open file `f` as a CSV file.
+def open_csv(f):
+    global sysdict, syslist
+    reader = csv.reader(open(name))
+    header = reader.__next__()[3:]
+    if len(syslist) == 0:
+        # Read and parse the header line.
+        for sysname in header:
+            m = pat.match(sysname)
+            s = m[1] if m else sysname
+            s = fix(s)
+            sysdict[s] = 0
+            syslist.append(s)
+    return reader
+
+# Find all self-reported circular dependencies
+def self_reported():
+    with open(name) as f:
+        reader = open_csv(f)
+        with open("self-reported.txt", "w") as out:
+            for line in reader:
+                me = fix(line[2])
+                if me not in sysdict:
+                    print(f"***{me} not found", file=sys.stderr)
+                line = line[3:]
+                for i in range(0, len(line)):
+                    if line[i].find(',') != -1:
+                        print(f"{me} : {syslist[i]}", file=out)
+
+# Find duplicate entries
+def find_duplicates():
+    with open(name) as f:
+        reader = open_csv(f)
+        for k in sysdict.keys():
+            sysdict[k] = []
+        for line in reader:
+            me = fix(line[2])
+            sysdict[me].append(reader.line_num)
+    dups = [ k for k in sysdict.keys() if len(sysdict[k]) > 1 ]
+    with open("duplicate-reports.txt", "w") as out:
+        for d in dups:
+            print(f"{d} : {sysdict[d]}", file=out)
+
+find_duplicates()
+self_reported()
