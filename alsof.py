@@ -49,10 +49,14 @@ def find_duplicates():
         for line in reader:
             me = fix(line[2])
             sysdict[me].append(reader.line_num)
+    # Collect all items that appear more than once
     dups = [ k for k in sysdict.keys() if len(sysdict[k]) > 1 ]
+    # Sort them by the number of items that mention them
+    dups.sort(key=lambda d: len(sysdict[d]))
     with open("duplicate-reports.txt", "w") as out:
         for d in dups:
-            print(f"{d} : {sysdict[d]}", file=out)
+            l = sysdict[d]
+            print(f"{d} : {len(l)} : {l}", file=out)
 
 find_duplicates()
 self_reported()
