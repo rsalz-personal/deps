@@ -11,6 +11,11 @@ fix = lambda s: s.replace(' ', '-').replace('-+-', '+')
 sysdict = dict()
 syslist = []
 
+# I should really make a class that wraps the file, iterator, and
+# this kind of thing.
+def skip(line):
+    return ' '.join(line).find("SKIP") > -1
+
 # Parse open file `f` as a CSV file.
 def open_csv(f):
     global sysdict, syslist
@@ -32,6 +37,7 @@ def self_reported():
         reader = open_csv(f)
         with open("self-reported.txt", "w") as out:
             for line in reader:
+                if skip(line): continue
                 me = fix(line[2])
                 if me not in sysdict:
                     print(f"***{me} not found", file=sys.stderr)
@@ -48,6 +54,7 @@ def find_duplicates():
         for k in sysdict.keys():
             sysdict[k] = []
         for line in reader:
+            if skip(line): continue
             me = fix(line[2])
             sysdict[me].append(reader.line_num)
             emails[reader.line_num] = line[1]
