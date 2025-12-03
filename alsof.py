@@ -42,6 +42,7 @@ def self_reported():
 
 # Find duplicate entries
 def find_duplicates():
+    emails = dict()
     with open(name) as f:
         reader = open_csv(f)
         for k in sysdict.keys():
@@ -49,6 +50,7 @@ def find_duplicates():
         for line in reader:
             me = fix(line[2])
             sysdict[me].append(reader.line_num)
+            emails[reader.line_num] = line[1]
     # Collect all items that appear more than once
     dups = [ k for k in sysdict.keys() if len(sysdict[k]) > 1 ]
     # Sort them by the number of items that mention them
@@ -56,7 +58,8 @@ def find_duplicates():
     with open("duplicate-reports.txt", "w") as out:
         for d in dups:
             l = sysdict[d]
-            print(f"{d} : {len(l)} : {l}", file=out)
+            who = [ emails[n] for n in sysdict[d] ]
+            print(f"{d} : {len(l)} : {l}\n\t{who}", file=out)
 
 find_duplicates()
 self_reported()
