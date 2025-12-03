@@ -7,11 +7,6 @@ Hosting-Database-and-ProxySQL : Prometheus+Alert-Manager
 Hosting-Database-and-ProxySQL : Salt
 Hosting-Database-and-ProxySQL : Thanos
 Hosting-Database-and-ProxySQL : VictoriaMetrics
-Fleet-Manager : Compute-Core-(Vbin,-host-stack)
-Fleet-Manager : Fleet-Manager
-Fleet-Manager : FleetDM
-Fleet-Manager : Loki
-Fleet-Manager : Prometheus+Alert-Manager
 Linode/goblin : API
 Linode/goblin : Compute-Core-(Vbin,-host-stack)
 Admin/BP : app-blockstorage-microservice
