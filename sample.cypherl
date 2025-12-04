@@ -1,0 +1,36 @@
+MATCH (n) DETACH DELETE n;
+CREATE
+(db:System {codename: "db", name: "Linode Database (SQL)", tier: 0}),
+(api:System {codename: "api", name: "APIv4", tier: 0, proglang: "Python", customerFacing: True}),
+(bapi:System {codename: "bapi", name: "Backend API", tier: 0, proglang: "Python"}),
+(api)-[:DEPENDS_ON]->(bapi),
+(api)-[:DEPENDS_ON {schema: "hosting"}]->(db),
+(bapi)-[:DEPENDS_ON {schema: "hosting"}]->(db),
+(proxysql:Subsystem {codename: "proxysql", name: "ProxySQL", majorVersion: "2"}),
+(mysql:Subsystem {codename: "mysql", name: "MySQL", majorVersion: "8"}),
+(consul:Subsystem {codename: "consul", name: "Consul", majorVersion: "1"}),
+(db)-[:RUNS_ON]->(proxysql),
+(db)-[:RUNS_ON]->(mysql),
+(db)-[:RUNS_ON]->(consul),
+(login:System {codename: "login", name: "Login / New User", tier: 0, proglang: "Python", customerFacing: True}),
+(login)-[:DEPENDS_ON {schema: "hosting"}]->(db),
+(cloudmgr {codename: "cloudmgr", name: "Cloud Manager", tier: 0, proglang: "CFML", customerFacing: True}),
+(cloudmgr)-[:DEPENDS_ON]->(api),
+(osa:System {codename: "osa", name: "Object Storage API", tier: 0, proglang: "Python", customerFacing: True}),
+(osa)-[:DEPENDS_ON {schema: "hosting"}]->(db),
+(suds:System {codename: "suds", name: "SUDS (User Secrets)", tier: 0, proglang: "Python"}),
+(suds)-[:DEPENDS_ON {schema: "suds"}]->(db),
+(admin:System {codename: "admin", name: "Admin", tier: 0}),
+(admin)-[:DEPENDS_ON {schema: "hosting"}]->(db),
+(backups:System {codename: "backups", name: "Backups & Migrations", tier: 0, proglang: "perl"}),
+(backups)-[:DEPENDS_ON {schema: "hosting"}]->(db),
+(statsboxes:System {codename: "statsbox", name: "Statsboxes", tier: 0, proglang: "perl"}),
+(statsboxes)-[:DEPENDS_ON {schema: "hosting"}]->(db),
+(longview:System {codename: "longview", name: "Longview", tier: 0, proglang: "perl"}),
+(longview)-[:DEPENDS_ON {schema: "hosting"}]->(db),
+(lke:System {codename: "lke", name: "Linode Kubernetes Engine (LKE)", tier: 0, customerFacing: True}),
+(lke)-[:DEPENDS_ON]->(api);
+
+MATCH (n)
+OPTIONAL MATCH (n)-[r]-(m)
+RETURN n, r, m;
