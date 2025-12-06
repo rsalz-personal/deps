@@ -1,18 +1,25 @@
 #! /usr/bin/env python3
 
-import csv, re, sys
+import argparse, csv, re, sys
 
 name = "compdeps.csv"
+what = []
 
 pat = re.compile(".*\[(.*)\]")
 fix = lambda s: s.replace(' ', '-').replace('-+-', '+')
 skip = lambda line: ' '.join(line).find("SKIP") > -1
 
+# A class that wraps the CSV reader class and includes file-opening
+# with (context) and iterator support
 class mycsv:
     COUNTS = 0
     ARRAY = 1
     def __init__(self, fname, what = COUNTS):
-        self.src = open(fname)
+        try:
+            self.src = open(fname)
+        except OSError as e:
+            print(f"Can't open {fname}: {e.strerror} (errno={e.errno})")
+            raise SystemExit(1)
         self.reader = csv.reader(self.src)
         self.header = self.reader.__next__()[3:]
         self.syslist = []
@@ -23,8 +30,14 @@ class mycsv:
             self.syslist.append(s)
             self.sysdict[s] = 0 if what == mycsv.COUNTS else []
     def __del__(self):
-        self.src.close()
-    # Iterator methods
+        if hasattr(self, 'src'):
+            self.src.close()
+    # with statement methods
+    def __enter__(self):
+        return self
+    def __exit__(self, exc_type, exc_value, traceback):
+        pass
+    # Iterator methods - pass it to the embedded CSV reader object.
     def __iter__(self):
         return self
     def __next__(self):
@@ -33,11 +46,6 @@ class mycsv:
             if ' '.join(line).find("SKIP") == -1:
                 line[2] = fix(line[2])
                 return line
-    # with statement methods
-    def __enter__(self):
-        return self
-    def __exit__(self, exc_type, exc_value, traceback):
-        pass
     # Methods
     def line_num(self):
         return self.reader.line_num
@@ -72,5 +80,25 @@ def find_duplicates():
             who = [ emails[n] for n in f.sysdict[d] ]
             print(f"{d} : {len(l)} : {l}\n\t{who}", file=out)
 
-find_duplicates()
-self_reported()
+# Parse JCL.
+parser = argparse.ArgumentParser(
+                prog='alsof',
+                description='ALSOF CIRCDEP survey results parser')
+parser.add_argument('-f', '-in', dest='name', default=name,
+                    help='Input file')
+parser.add_argument('-d', '-dups', action='store_true',
+                    help='Report duplicate entries')
+parser.add_argument('-m', '-merge', action='store_true',
+                    help='Merge dupicates to <infile>.new')
+parser.add_argument('-s', '-self', action='store_true',
+                    help='List self-reported circular dependencies')
+d = vars(parser.parse_args())
+
+# Import settings, act on them.
+name = d['name']
+if d['d']:
+    find_duplicates()
+if d['m']:
+    merge()
+if d['s']:
+    self_reported()
