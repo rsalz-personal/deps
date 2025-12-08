@@ -44,7 +44,7 @@ class mycsv:
         while True:
             line = self.reader.__next__()
             if ' '.join(line).find("SKIP") == -1:
-                line[2] = fix(line[2])
+                self.sys = fix(line[2])
                 return line
     # Methods
     def line_num(self):
@@ -55,13 +55,12 @@ def self_reported():
     with (mycsv(name) as f,
     open("self-reported.txt", "w") as out):
         for line in f:
-            me = line[2]
-            if me not in f.sysdict:
-                print(f"***{me} not found", file=sys.stderr)
+            if self.sys not in f.sysdict:
+                print(f"***{self.sys} not found", file=sys.stderr)
             line = line[3:]
             for i in range(0, len(line)):
                 if line[i].find(',') != -1:
-                    print(f"{me} : {f.syslist[i]}", file=out)
+                    print(f"{self.sys} : {f.syslist[i]}", file=out)
 
 # Find duplicate entries
 def find_duplicates():
@@ -69,7 +68,7 @@ def find_duplicates():
     with (mycsv(name, mycsv.ARRAY) as f,
     open("duplicate-reports.txt", "w") as out):
         for line in f:
-            f.sysdict[line[2]].append(f.line_num())
+            f.sysdict[f.sys].append(f.line_num())
             emails[f.line_num()] = line[1]
         # Collect all items that appear more than once
         dups = [ k for k in f.sysdict.keys() if len(f.sysdict[k]) > 1 ]
@@ -79,6 +78,11 @@ def find_duplicates():
             l = f.sysdict[d]
             who = [ emails[n] for n in f.sysdict[d] ]
             print(f"{d} : {len(l)} : {l}\n\t{who}", file=out)
+
+def merge():
+    with open(name) as f:
+        lines = f.readlines()
+    print(len(lines))
 
 # Parse JCL.
 parser = argparse.ArgumentParser(
