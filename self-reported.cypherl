@@ -1,0 +1,432 @@
+CREATE (BlockStorage:Node {id: 1, name: "BlockStorage", when: "11-5-2025", who: "dmonsche@akamai.com"});
+CREATE (NoMS:Node {id: 2, name: "NoMS", when: "10-28-202", who: "nidillon@akamai.com"});
+CREATE (app_blockstorage:Node {id: 3, name: "app_blockstorage", when: "10-23-202", who: "sabidi@akamai.com"});
+CREATE (NodeBalancer:Node {id: 4, name: "NodeBalancer", when: "11-5-2025", who: "rrusin@akamai.com"});
+CREATE (app_sre:Node {id: 5, name: "app_sre", when: "10-23-202", who: "sabidi@akamai.com"});
+CREATE (VLAN:Node {id: 6, name: "VLAN", when: "XXX", who: "XXX"});
+CREATE (SUDS:Node {id: 7, name: "SUDS", when: "10-28-202", who: "apilakat@akamai.com"});
+CREATE (CF_API_billing:Node {id: 8, name: "CF_API_billing", when: "10-21-202", who: "kjhawar@akamai.com"});
+CREATE (LoadBalancers:Node {id: 9, name: "LoadBalancers", when: "XXX", who: "XXX"});
+CREATE (ComputeCore:Node {id: 10, name: "ComputeCore", when: "11-14-202", who: "bgnam@akamai.com"});
+CREATE (Longview:Node {id: 11, name: "Longview", when: "11-5-2025", who: "kmuddapo@akamai.com"});
+CREATE (AuthorativeNameservers:Node {id: 12, name: "AuthorativeNameservers", when: "11-14-202", who: "aoneill@akamai.com"});
+CREATE (OutboundMail:Node {id: 13, name: "OutboundMail", when: "11-14-202", who: "oebert@akamai.com"});
+CREATE (FleetManager:Node {id: 14, name: "FleetManager", when: "11-14-202", who: "tkrzyzan@akamai.com"});
+CREATE (Thanos:Node {id: 15, name: "Thanos", when: "XXX", who: "XXX"});
+CREATE (DevCloud:Node {id: 16, name: "DevCloud", when: "XXX", who: "XXX"});
+CREATE (WebBoxes:Node {id: 17, name: "WebBoxes", when: "XXX", who: "XXX"});
+CREATE (InternalCA_SSL:Node {id: 18, name: "InternalCA_SSL", when: "11-14-202", who: "dabennet@akamai.com"});
+CREATE (NetL4LB:Node {id: 19, name: "NetL4LB", when: "XXX", who: "XXX"});
+CREATE (Ansible:Node {id: 20, name: "Ansible", when: "11-5-2025", who: "whegedus@akamai.com"});
+CREATE (Maileater:Node {id: 21, name: "Maileater", when: "10-28-202", who: "nidillon@akamai.com"});
+CREATE (Prometheus_AlertManager:Node {id: 22, name: "Prometheus_AlertManager", when: "10-31-202", who: "mbishop@akamai.com"});
+CREATE (BoltMonitor:Node {id: 23, name: "BoltMonitor", when: "XXX", who: "XXX"});
+CREATE (freeipa:Node {id: 24, name: "freeipa", when: "XXX", who: "XXX"});
+CREATE (CommunitySite:Node {id: 25, name: "CommunitySite", when: "10-28-202", who: "nidillon@akamai.com"});
+CREATE (Mirrors:Node {id: 26, name: "Mirrors", when: "11-14-202", who: "oebert@akamai.com"});
+CREATE (CloudManager:Node {id: 27, name: "CloudManager", when: "XXX", who: "XXX"});
+CREATE (Dhcp6Unnumbered:Node {id: 28, name: "Dhcp6Unnumbered", when: "11-4-2025", who: "tpaler@akamai.com"});
+CREATE (tang:Node {id: 29, name: "tang", when: "XXX", who: "XXX"});
+CREATE (CloudFirewall:Node {id: 30, name: "CloudFirewall", when: "11-13-202", who: "maalvare@akamai.com"});
+CREATE (blackboxes:Node {id: 31, name: "blackboxes", when: "10-28-202", who: "nidillon@akamai.com"});
+CREATE (Nagios:Node {id: 32, name: "Nagios", when: "XXX", who: "XXX"});
+CREATE (Ingen:Node {id: 33, name: "Ingen", when: "11-14-202", who: "ppranav@akamai.com"});
+CREATE (NAIS:Node {id: 34, name: "NAIS", when: "11-7-2025", who: "bruss@akamai.com"});
+CREATE (DDoSAlertingandMitigation:Node {id: 35, name: "DDoSAlertingandMitigation", when: "11-5-2025", who: "britchey@akamai.com"});
+CREATE (DeveloperExperience:Node {id: 36, name: "DeveloperExperience", when: "10-24-202", who: "lgarber@akamai.com"});
+CREATE (VPC:Node {id: 37, name: "VPC", when: "11-18-202", who: "ugaikwad@akamai.com"});
+CREATE (ObjectStorageAPI:Node {id: 38, name: "ObjectStorageAPI", when: "11-6-2025", who: "faraucas@akamai.com"});
+CREATE (LKE:Node {id: 39, name: "LKE", when: "10-20-202", who: "schinmai@akamai.com, cmcgalli@akamai.com"});
+CREATE (kvdata_iptables:Node {id: 40, name: "kvdata_iptables", when: "XXX", who: "XXX"});
+CREATE (InfraBoxes:Node {id: 41, name: "InfraBoxes", when: "XXX", who: "XXX"});
+CREATE (DBaaS:Node {id: 42, name: "DBaaS", when: "11-4-2025", who: "dperciva@akamai.com"});
+CREATE (Vault:Node {id: 43, name: "Vault", when: "XXX", who: "XXX"});
+CREATE (app_infra:Node {id: 44, name: "app_infra", when: "10-23-202", who: "sabidi@akamai.com"});
+CREATE (ImageService:Node {id: 45, name: "ImageService", when: "11-13-202", who: "kminnig@akamai.com"});
+CREATE (AkamaiCloudPulse:Node {id: 46, name: "AkamaiCloudPulse", when: "10-28-202", who: "apetriv@akamai.com"});
+CREATE (IPService:Node {id: 47, name: "IPService", when: "XXX", who: "XXX"});
+CREATE (Tapir:Node {id: 48, name: "Tapir", when: "XXX", who: "XXX"});
+CREATE (Salt:Node {id: 49, name: "Salt", when: "11-5-2025", who: "dpaulus@akamai.com"});
+CREATE (BPExternalAPI:Node {id: 50, name: "BPExternalAPI", when: "XXX", who: "XXX"});
+CREATE (MetadataBackups:Node {id: 51, name: "MetadataBackups", when: "11-13-202", who: "kminnig@akamai.com"});
+CREATE (app_nlb:Node {id: 52, name: "app_nlb", when: "11-4-2025", who: "agottepu@akamai.com"});
+CREATE (FRR:Node {id: 53, name: "FRR", when: "11-4-2025", who: "tpaler@akamai.com"});
+CREATE (Edgegen:Node {id: 54, name: "Edgegen", when: "XXX", who: "XXX"});
+CREATE (CloudIAM:Node {id: 55, name: "CloudIAM", when: "XXX", who: "XXX"});
+CREATE (API:Node {id: 56, name: "API", when: "10-28-202", who: "amassry@akamai.com"});
+CREATE (ELFServices:Node {id: 57, name: "ELFServices", when: "11-4-2025", who: "tpaler@akamai.com"});
+CREATE (HostingDB_ProxySQL:Node {id: 58, name: "HostingDB_ProxySQL", when: "10-28-202", who: "amassry@akamai.com"});
+CREATE (o11y_firechief_updater:Node {id: 59, name: "o11y_firechief_updater", when: "11-5-2025", who: "whegedus@akamai.com"});
+CREATE (Comet:Node {id: 60, name: "Comet", when: "11-4-2025", who: "tpaler@akamai.com"});
+CREATE (BAPI:Node {id: 61, name: "BAPI", when: "10-23-202", who: "sabidi@akamai.com"});
+CREATE (DhcpUnnumbered:Node {id: 62, name: "DhcpUnnumbered", when: "11-4-2025", who: "tpaler@akamai.com"});
+CREATE (Artifactory:Node {id: 63, name: "Artifactory", when: "XXX", who: "XXX"});
+CREATE (AdminBP:Node {id: 64, name: "AdminBP", when: "11-7-2025", who: "cpukrops@akamai.com"});
+CREATE (Loki:Node {id: 65, name: "Loki", when: "11-5-2025", who: "whegedus@akamai.com"});
+CREATE (VictoriaMetrics:Node {id: 66, name: "VictoriaMetrics", when: "10-28-202", who: "madennis@akamai.com"});
+CREATE (app_cloud_net_api:Node {id: 67, name: "app_cloud_net_api", when: "11-5-2025", who: "shassen@akamai.com"});
+CREATE (MigrationCloning:Node {id: 68, name: "MigrationCloning", when: "XXX", who: "XXX"});
+CREATE (AptCachers:Node {id: 69, name: "AptCachers", when: "11-14-202", who: "jfrederi@akamai.com"});
+CREATE (OpenTelemetry:Node {id: 70, name: "OpenTelemetry", when: "11-5-2025", who: "whegedus@akamai.com"});
+CREATE (ObjectStorageGen1:Node {id: 71, name: "ObjectStorageGen1", when: "11-5-2025", who: "dmonsche@akamai.com"});
+CREATE (Stackscripts:Node {id: 72, name: "Stackscripts", when: "XXX", who: "XXX"});
+CREATE (Jumpboxes:Node {id: 73, name: "Jumpboxes", when: "11-14-202", who: "jfrederi@akamai.com"});
+CREATE (ExtAPI:Node {id: 74, name: "ExtAPI", when: "XXX", who: "XXX"});
+CREATE (SmartwallTDDSystems:Node {id: 75, name: "SmartwallTDDSystems", when: "11-5-2025", who: "britchey@akamai.com"});
+CREATE (Grafana:Node {id: 76, name: "Grafana", when: "11-5-2025", who: "whegedus@akamai.com"});
+CREATE (Atlantis:Node {id: 77, name: "Atlantis", when: "11-5-2025", who: "dpaulus@akamai.com"});
+CREATE (Backups:Node {id: 78, name: "Backups", when: "11-13-202", who: "kminnig@akamai.com"});
+CREATE (LinodeGoblin:Node {id: 79, name: "LinodeGoblin", when: "10-14-202", who: "dcalsola@akamai.com"});
+CREATE (KPP:Node {id: 80, name: "KPP", when: "10-20-202", who: "jusemaa@akamai.com"});
+CREATE (ProvisioningAPI:Node {id: 81, name: "ProvisioningAPI", when: "XXX", who: "XXX"});
+CREATE (Terraform:Node {id: 82, name: "Terraform", when: "10-24-202", who: "lgarber@akamai.com"});
+CREATE (NTP:Node {id: 83, name: "NTP", when: "11-14-202", who: "dabennet@akamai.com"});
+CREATE (ObjectStorageGen2:Node {id: 84, name: "ObjectStorageGen2", when: "11-6-2025", who: "faraucas@akamai.com"});
+CREATE (Github_and_bits:Node {id: 85, name: "Github_and_bits", when: "11-6-2025", who: "vgabda@akamai.com"});
+CREATE (LinodeLogin:Node {id: 86, name: "LinodeLogin", when: "10-28-202", who: "apilakat@akamai.com"});
+CREATE (LinodeJira:Node {id: 87, name: "LinodeJira", when: "XXX", who: "XXX"});
+CREATE (LKE_E:Node {id: 88, name: "LKE_E", when: "10-20-202", who: "schinmai@akamai.com"});
+CREATE (ManagementResolvers:Node {id: 89, name: "ManagementResolvers", when: "11-17-202", who: "avarghes@akamai.com"});
+CREATE (Lish_etc:Node {id: 90, name: "Lish_etc", when: "10-28-202", who: "amassry@akamai.com"});
+MATCH (a {name: "BlockStorage"}), (b {name: "ComputeCore"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "BlockStorage"}), (b {name: "app_blockstorage"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "HostingDB_ProxySQL"}), (b {name: "DevCloud"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "HostingDB_ProxySQL"}), (b {name: "Grafana"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "HostingDB_ProxySQL"}), (b {name: "HostingDB_ProxySQL"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "HostingDB_ProxySQL"}), (b {name: "Prometheus_AlertManager"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "HostingDB_ProxySQL"}), (b {name: "Salt"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "HostingDB_ProxySQL"}), (b {name: "Thanos"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "HostingDB_ProxySQL"}), (b {name: "VictoriaMetrics"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "LinodeGoblin"}), (b {name: "API"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "LinodeGoblin"}), (b {name: "ComputeCore"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AdminBP"}), (b {name: "app_blockstorage"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AdminBP"}), (b {name: "app_cloud_net_api"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AdminBP"}), (b {name: "app_infra"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AdminBP"}), (b {name: "app_nlb"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AdminBP"}), (b {name: "BlockStorage"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AdminBP"}), (b {name: "BoltMonitor"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AdminBP"}), (b {name: "BPExternalAPI"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AdminBP"}), (b {name: "CF_API_billing"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AdminBP"}), (b {name: "CloudIAM"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AdminBP"}), (b {name: "ComputeCore"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AdminBP"}), (b {name: "DDoSAlertingandMitigation"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AdminBP"}), (b {name: "DhcpUnnumbered"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AdminBP"}), (b {name: "Dhcp6Unnumbered"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AdminBP"}), (b {name: "ExtAPI"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AdminBP"}), (b {name: "FleetManager"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AdminBP"}), (b {name: "Grafana"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AdminBP"}), (b {name: "HostingDB_ProxySQL"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AdminBP"}), (b {name: "ImageService"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AdminBP"}), (b {name: "InfraBoxes"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AdminBP"}), (b {name: "Ingen"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AdminBP"}), (b {name: "InternalCA_SSL"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AdminBP"}), (b {name: "IPService"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AdminBP"}), (b {name: "Jumpboxes"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AdminBP"}), (b {name: "LinodeJira"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AdminBP"}), (b {name: "LinodeLogin"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AdminBP"}), (b {name: "Lish_etc"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AdminBP"}), (b {name: "LKE"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AdminBP"}), (b {name: "LKE_E"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AdminBP"}), (b {name: "LoadBalancers"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AdminBP"}), (b {name: "Longview"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AdminBP"}), (b {name: "MigrationCloning"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AdminBP"}), (b {name: "NAIS"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AdminBP"}), (b {name: "ObjectStorageGen1"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AdminBP"}), (b {name: "ObjectStorageGen2"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AdminBP"}), (b {name: "Prometheus_AlertManager"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AdminBP"}), (b {name: "SmartwallTDDSystems"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AdminBP"}), (b {name: "Stackscripts"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AdminBP"}), (b {name: "Vault"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AdminBP"}), (b {name: "VictoriaMetrics"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AdminBP"}), (b {name: "WebBoxes"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "KPP"}), (b {name: "ObjectStorageGen2"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "LKE"}), (b {name: "LKE"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "LKE_E"}), (b {name: "DeveloperExperience"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "CF_API_billing"}), (b {name: "AdminBP"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "API"}), (b {name: "DevCloud"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "BAPI"}), (b {name: "AuthorativeNameservers"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "BAPI"}), (b {name: "OpenTelemetry"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "BAPI"}), (b {name: "Prometheus_AlertManager"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "app_sre"}), (b {name: "Jumpboxes"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "app_infra"}), (b {name: "InfraBoxes"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "app_infra"}), (b {name: "Terraform"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "DeveloperExperience"}), (b {name: "LKE"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "DeveloperExperience"}), (b {name: "LKE_E"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "DeveloperExperience"}), (b {name: "Terraform"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "Terraform"}), (b {name: "LKE"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "Terraform"}), (b {name: "LKE_E"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "Ansible"}), (b {name: "Stackscripts"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "Loki"}), (b {name: "API"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AkamaiCloudPulse"}), (b {name: "API"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "CommunitySite"}), (b {name: "BAPI"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "Maileater"}), (b {name: "AdminBP"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "NoMS"}), (b {name: "AdminBP"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "NoMS"}), (b {name: "blackboxes"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "NoMS"}), (b {name: "BPExternalAPI"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "NoMS"}), (b {name: "Nagios"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "NoMS"}), (b {name: "NoMS"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AdminBP"}), (b {name: "CloudManager"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "API"}), (b {name: "LinodeLogin"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "API"}), (b {name: "MigrationCloning"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "ComputeCore"}), (b {name: "AdminBP"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "ComputeCore"}), (b {name: "API"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "ComputeCore"}), (b {name: "Artifactory"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "ComputeCore"}), (b {name: "BlockStorage"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "ComputeCore"}), (b {name: "Github_and_bits"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "ComputeCore"}), (b {name: "Jumpboxes"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "LinodeLogin"}), (b {name: "API"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "LinodeLogin"}), (b {name: "CloudIAM"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "LinodeLogin"}), (b {name: "CloudManager"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "LinodeLogin"}), (b {name: "LinodeLogin"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "LinodeLogin"}), (b {name: "LoadBalancers"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "LinodeLogin"}), (b {name: "NodeBalancer"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "LinodeLogin"}), (b {name: "SUDS"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "DBaaS"}), (b {name: "API"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "DBaaS"}), (b {name: "Terraform"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "SUDS"}), (b {name: "ProvisioningAPI"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "ComputeCore"}), (b {name: "app_blockstorage"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "ComputeCore"}), (b {name: "app_cloud_net_api"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "ComputeCore"}), (b {name: "Backups"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "ComputeCore"}), (b {name: "BlockStorage"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "ComputeCore"}), (b {name: "ImageService"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "ComputeCore"}), (b {name: "LinodeGoblin"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "ComputeCore"}), (b {name: "tang"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "BlockStorage"}), (b {name: "DevCloud"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "DBaaS"}), (b {name: "AdminBP"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "DBaaS"}), (b {name: "AkamaiCloudPulse"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "DBaaS"}), (b {name: "CloudManager"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "DBaaS"}), (b {name: "ComputeCore"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "FRR"}), (b {name: "NetL4LB"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "ELFServices"}), (b {name: "NetL4LB"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "Salt"}), (b {name: "Salt"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "Salt"}), (b {name: "Terraform"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "app_cloud_net_api"}), (b {name: "VLAN"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "app_cloud_net_api"}), (b {name: "VPC"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "ObjectStorageGen1"}), (b {name: "AdminBP"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "ObjectStorageGen1"}), (b {name: "API"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "ObjectStorageGen1"}), (b {name: "CloudManager"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "ObjectStorageGen1"}), (b {name: "Loki"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "ObjectStorageGen1"}), (b {name: "Prometheus_AlertManager"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "ObjectStorageGen1"}), (b {name: "Thanos"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "ObjectStorageGen1"}), (b {name: "VictoriaMetrics"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "Salt"}), (b {name: "Ingen"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "Salt"}), (b {name: "InternalCA_SSL"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "Salt"}), (b {name: "Jumpboxes"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "BlockStorage"}), (b {name: "ComputeCore"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "BlockStorage"}), (b {name: "DevCloud"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "BlockStorage"}), (b {name: "VictoriaMetrics"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "Salt"}), (b {name: "Salt"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "Salt"}), (b {name: "AdminBP"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "Salt"}), (b {name: "IPService"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "Salt"}), (b {name: "kvdata_iptables"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "Salt"}), (b {name: "Prometheus_AlertManager"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "Atlantis"}), (b {name: "Jumpboxes"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "o11y_firechief_updater"}), (b {name: "Tapir"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "ObjectStorageGen2"}), (b {name: "DevCloud"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "ObjectStorageGen2"}), (b {name: "Grafana"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "ObjectStorageGen2"}), (b {name: "KPP"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "ObjectStorageGen2"}), (b {name: "Thanos"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "ObjectStorageAPI"}), (b {name: "BAPI"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "ObjectStorageAPI"}), (b {name: "DevCloud"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "ObjectStorageAPI"}), (b {name: "ObjectStorageGen1"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "ObjectStorageAPI"}), (b {name: "ObjectStorageGen2"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AdminBP"}), (b {name: "Stackscripts"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "NAIS"}), (b {name: "Comet"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "CloudFirewall"}), (b {name: "Terraform"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "MetadataBackups"}), (b {name: "NetL4LB"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "OutboundMail"}), (b {name: "API"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "ComputeCore"}), (b {name: "Comet"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "ComputeCore"}), (b {name: "FleetManager"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "ComputeCore"}), (b {name: "ImageService"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "Mirrors"}), (b {name: "AptCachers"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "Mirrors"}), (b {name: "Jumpboxes"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "Mirrors"}), (b {name: "Lish_etc"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AptCachers"}), (b {name: "Artifactory"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AptCachers"}), (b {name: "freeipa"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AptCachers"}), (b {name: "Salt"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "AptCachers"}), (b {name: "NetL4LB"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "Jumpboxes"}), (b {name: "AptCachers"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "Jumpboxes"}), (b {name: "Atlantis"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "Jumpboxes"}), (b {name: "Salt"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "NTP"}), (b {name: "Artifactory"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "NTP"}), (b {name: "Prometheus_AlertManager"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "OutboundMail"}), (b {name: "AdminBP"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "OutboundMail"}), (b {name: "API"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "OutboundMail"}), (b {name: "Edgegen"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "OutboundMail"}), (b {name: "Github_and_bits"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "InternalCA_SSL"}), (b {name: "LinodeJira"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "InternalCA_SSL"}), (b {name: "Prometheus_AlertManager"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "InternalCA_SSL"}), (b {name: "Salt"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "InternalCA_SSL"}), (b {name: "Vault"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
+MATCH (a {name: "ManagementResolvers"}), (b {name: "AuthorativeNameservers"})
+  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
