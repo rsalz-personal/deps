@@ -148,23 +148,29 @@ def self_reported():
             who[f.sys] = line[1]
             line = line[3:]
             for i in range(0, len(line)):
+                # Find all "depends,me-depend" entries and record them
                 if line[i].find(',') != -1:
                     pairs.append((f.sys,f.syslist[i]))
                     print(f"{f.sys} : {f.syslist[i]}", file=out)
 
+    # Get a unique list of everyone we recorded
     names = [ k for (k,v) in pairs ]
     names.extend([ v for (k,v) in pairs ])
     names = set(names)
 
     with open("self-reported.cypherl", "w") as mg:
+        ids = dict()
         for (i,n) in enumerate(names):
+            ids[n] = i + 1
             wn = when.get(n, 'XXX')
             wo = who.get(n, 'XXX')
-            print(f'CREATE ({n}:System {{id: {i+1} name: "{n}", when: "{wn}", who: "{wo}"}});',
+            print(f'CREATE ({n}:Node {{id: {i+1}, name: "{n}", when: "{wn}", who: "{wo}"}});',
                   file=mg)
         for sys,dep in pairs:
-            print(f"CREATE ({sys})-[:DEPENDS_ON]->({dep});", file=mg)
-            print(f"CREATE ({dep})-[:DEPENDS_ON]->({sys});", file=mg)
+            print(f'MATCH (a {{name: "{sys}"}}), (b {{name: "{dep}"}})', file=mg)
+            print(f"  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);", file=mg)
+            #print(f"CREATE ({sys})-[:DEPENDS_ON]->({dep});", file=mg)
+            #print(f"CREATE ({dep})-[:DEPENDS_ON]->({sys});", file=mg)
 
 # Find duplicate entries
 def find_duplicates():
