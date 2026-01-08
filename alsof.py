@@ -149,48 +149,33 @@ def self_reported():
             who[f.sys] = line[1]
             line = line[3:]
             for i in range(0, len(line)):
-                # Find all "depends,me-depend" entries and record them
+                # Find all "depend-on,me-depend-on" entries and record them
                 if line[i].find(',') != -1:
-                    pairs.append((f.sys,f.syslist[i]))
                     print(f"{f.sys} : {f.syslist[i]}", file=out)
+                    pairs.append((f.sys,f.syslist[i]))
 
     # Get a unique list of everyone we recorded
     names = [ k for (k,v) in pairs ]
     names.extend([ v for (k,v) in pairs ])
     names = set(names)
 
-    # Create the database.
-    with open("self-reported.cypherl", "w") as mg:
+    # Create the nodes.
+    with open("mg/nodes.csv", "w") as mg:
         with redirect_stdout(mg):
+            print('id,name,when,who')
             ids = dict()
             for (i,n) in enumerate(names):
                 ids[n] = i + 1
                 wn = when.get(n, 'XXX')
                 wo = who.get(n, 'XXX')
-                print(f'CREATE ({n}:Sys {{id:{i+1}, name:"{n}"'
-                      f', when:"{wn}", who:"{wo}"'
-                      f'}} );')
-            #print('LOAD CSV from "file:///Users/rsalz/git/alsof-circdep/self-reported.csv" WITH HEADER as dep')
-            print('UNWIND [')
-            for sys,dep in pairs[:-2]:
-                print(f'  {{from:{ids[sys]}, to:{ids[dep]}}},')
-            (sys,dep) = pairs[-1]
-            print(f'  {{from:{ids[sys]}, to:{ids[dep]}}}')
-            print('] AS dep');
-            print('     MATCH (a {id: dep.from}), (b {id: dep.to})')
-            print('     MERGE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);')
-            print('     RETURN count(a);')
-            print('MATCH p = (n)-[:DEPENDS_ON*2..10]->(n)')
-            print('RETURN p;')
+                print(f'{i+1},"{n}","{wn}","{who}"')
 
-    # Create the CSV file of dependencies
-    with open("self-reported.csv", "w") as csv:
-        with redirect_stdout(csv):
+    # Create the depends-on table
+    with open("mg/edges.csv", "w") as mg:
+        with redirect_stdout(mg):
             print('from,to')
-            for sys,dep in pairs[:-2]:
-                print(f'{ids[sys]}, {ids[dep]}')
-            (sys,dep) = pairs[-1]
-            print(f'{ids[sys]}, {ids[dep]}')
+            for fr,to in pairs:
+                print(f'{ids[fr]},{ids[to]}')
 
 # Find duplicate entries
 def find_duplicates():
