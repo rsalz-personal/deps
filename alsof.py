@@ -167,16 +167,20 @@ def self_reported():
                 ids[n] = i + 1
                 wn = when.get(n, 'XXX')
                 wo = who.get(n, 'XXX')
-                print(f'CREATE ({n}:Sys {{id: {i+1}, name: "{n}"'
-                      f', when: "{wn}", who: "{wo}"'
+                print(f'CREATE ({n}:Sys {{id:{i+1}, name:"{n}"'
+                      f', when:"{wn}", who:"{wo}"'
                       f'}} );')
-            print('//\nLOAD CSV from "file:///Users/rsalz/git/alsof-circdep/self-reported.csv" WITH HEADER as row')
-            print('     MATCH (a {id: row.from})')
-            print('     MATCH (b {id: row.to})')
-            print('     MERGE (a)-[:DEPENDS_ON]->(b)')
-            print('     MERGE (b)-[:DEPENDS_ON]->(a)')
+            #print('LOAD CSV from "file:///Users/rsalz/git/alsof-circdep/self-reported.csv" WITH HEADER as dep')
+            print('UNWIND [')
+            for sys,dep in pairs[:-2]:
+                print(f'  {{from:{ids[sys]}, to:{ids[dep]}}},')
+            (sys,dep) = pairs[-1]
+            print(f'  {{from:{ids[sys]}, to:{ids[dep]}}}')
+            print('] AS dep');
+            print('     MATCH (a {id: dep.from}), (b {id: dep.to})')
+            print('     MERGE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);')
             print('     RETURN count(a);')
-            print('//\nMATCH p = (n)-[:DEPENDS_ON*2..10]->(n)')
+            print('MATCH p = (n)-[:DEPENDS_ON*2..10]->(n)')
             print('RETURN p;')
 
     # Create the CSV file of dependencies
@@ -186,7 +190,7 @@ def self_reported():
             for sys,dep in pairs[:-2]:
                 print(f'{ids[sys]}, {ids[dep]}')
             (sys,dep) = pairs[-1]
-            print(f'{ids[sys]}, {ids[dep]},')
+            print(f'{ids[sys]}, {ids[dep]}')
 
 # Find duplicate entries
 def find_duplicates():
