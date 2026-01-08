@@ -1,6 +1,7 @@
 #! /usr/bin/env python3
 
 import argparse, csv, re, sys
+from contextlib import redirect_stdout
 
 name = "compdeps.csv"
 what = []
@@ -158,19 +159,34 @@ def self_reported():
     names.extend([ v for (k,v) in pairs ])
     names = set(names)
 
+    # Create the database.
     with open("self-reported.cypherl", "w") as mg:
-        ids = dict()
-        for (i,n) in enumerate(names):
-            ids[n] = i + 1
-            wn = when.get(n, 'XXX')
-            wo = who.get(n, 'XXX')
-            print(f'CREATE ({n}:Node {{id: {i+1}, name: "{n}", when: "{wn}", who: "{wo}"}});',
-                  file=mg)
-        for sys,dep in pairs:
-            print(f'MATCH (a {{name: "{sys}"}}), (b {{name: "{dep}"}})', file=mg)
-            print(f"  CREATE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);", file=mg)
-            #print(f"CREATE ({sys})-[:DEPENDS_ON]->({dep});", file=mg)
-            #print(f"CREATE ({dep})-[:DEPENDS_ON]->({sys});", file=mg)
+        with redirect_stdout(mg):
+            ids = dict()
+            for (i,n) in enumerate(names):
+                ids[n] = i + 1
+                wn = when.get(n, 'XXX')
+                wo = who.get(n, 'XXX')
+                print(f'CREATE ({n}:Sys {{id: {i+1}, name: "{n}"'
+                      f', when: "{wn}", who: "{wo}"'
+                      f'}} );')
+            print('//\nLOAD CSV from "file:///Users/rsalz/git/alsof-circdep/self-reported.csv" WITH HEADER as row')
+            print('     MATCH (a {id: row.from})')
+            print('     MATCH (b {id: row.to})')
+            print('     MERGE (a)-[:DEPENDS_ON]->(b)')
+            print('     MERGE (b)-[:DEPENDS_ON]->(a)')
+            print('     RETURN count(a);')
+            print('//\nMATCH p = (n)-[:DEPENDS_ON*2..10]->(n)')
+            print('RETURN p;')
+
+    # Create the CSV file of dependencies
+    with open("self-reported.csv", "w") as csv:
+        with redirect_stdout(csv):
+            print('from,to')
+            for sys,dep in pairs[:-2]:
+                print(f'{ids[sys]}, {ids[dep]}')
+            (sys,dep) = pairs[-1]
+            print(f'{ids[sys]}, {ids[dep]},')
 
 # Find duplicate entries
 def find_duplicates():
