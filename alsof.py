@@ -4,10 +4,11 @@ import argparse, csv, re, sys
 from contextlib import redirect_stdout
 
 name = "compdeps.csv"
-what = []
 
 pat = re.compile(".*\[(.*)\]")
 skip = lambda line: ' '.join(line).find("SKIP") > -1
+getwhen = lambda line: line[0][0:9].replace('/', '-')
+getwho = lambda line: line[1].replace('@akamai.com', '')
 
 # A dictionary mapping names from the CSV file to names that are
 # useable in MemGraph.
@@ -78,7 +79,7 @@ renames = {
     "Ops Jenkins" : "OpsJenkins",
     "osa (Object Storage API) microservice" : "ObjectStorageAPI",
     "Outbound mail" : "OutboundMail",
-    "Prometheus + Alert Manager" : "Prometheus_AlertManager",
+    "Prometheus + Alert Manager" : "PrometheusAlertMgr",
     "Provisioning API" : "ProvisioningAPI",
     "Rad-Unumbered" : "RadUnumbered",
     "Reseller Support API" : "ResellerSupportAPI",
@@ -134,19 +135,24 @@ class CSVReader:
     def line_num(self):
         return self.reader.line_num
 
+##
+##
+##
+
 # Find all self-reported circular dependencies
 def self_reported():
     # List of (me, i-depend-on) tuples.
     pairs = []
-    who = dict()
     when = dict()
+    who = dict()
     with (CSVReader(name) as f,
-    open("self-reported.txt", "w") as out):
+          open("self-reported.txt", "w") as out):
         for line in f:
             if f.sys not in f.systems:
                 print(f"***{f.sys} not found", file=sys.stderr)
-            when[f.sys] = line[0][0:9].replace('/', '-')
-            who[f.sys] = line[1]
+                continue
+            when[f.sys] = getwhen(line)
+            who[f.sys] = getwho(line)
             line = line[3:]
             for i in range(0, len(line)):
                 # Find all "depend-on,me-depend-on" entries and record them
@@ -160,31 +166,32 @@ def self_reported():
     names = set(names)
 
     # Create the nodes.
-    with open("mg/nodes.csv", "w") as mg:
+    with open("mg/self-nodes.csv", "w") as mg:
         with redirect_stdout(mg):
             print('id,name,when,who')
             ids = dict()
-            for (i,n) in enumerate(names):
-                ids[n] = i + 1
+            for (i,n) in enumerate(names, 1):
+                ids[n] = i
                 wn = when.get(n, 'XXX')
                 wo = who.get(n, 'XXX')
-                print(f'{i+1},"{n}","{wn}","{who}"')
+                print(f'{i},"{n}","{wn}","{wo}"')
 
     # Create the depends-on table
-    with open("mg/edges.csv", "w") as mg:
+    with open("mg/self-edges.csv", "w") as mg:
         with redirect_stdout(mg):
             print('from,to')
             for fr,to in pairs:
                 print(f'{ids[fr]},{ids[to]}')
+                print(f'{ids[to]},{ids[fr]}')
 
 # Find duplicate entries
 def find_duplicates():
     emails = dict()
     with (CSVReader(name, CSVReader.ARRAY) as f,
-    open("duplicate-reports.txt", "w") as out):
+          open("duplicate-reports.txt", "w") as out):
         for line in f:
             f.systems[f.sys].append(f.line_num())
-            emails[f.line_num()] = line[1]
+            emails[f.line_num()] = getwho(line)
         # Collect all items that appear more than once
         dups = [ k for k in f.systems.keys() if len(f.systems[k]) > 1 ]
         # Sort them by the number of items that mention them
@@ -194,31 +201,63 @@ def find_duplicates():
             who = [ emails[n] for n in f.systems[d] ]
             print(f"{d} : {len(l)} : {l}\n\t{who}", file=out)
 
-def merge_lines(merged, addl):
-    pass
+## Merge two fields, return the new value
+def merge_field(a, b):
+    # If fields have the same value, return a
+    if a == b:
+        return a
+    # If either is empty, return the other one
+    if b == '':
+        return a
+    if a == '':
+        return b;
+    # If either field is multi-valued, return it
+    if a.find(',') > -1:
+        return a
+    if b.find(',') > -1:
+        return b
+    return '"I depend on this, This depends on me"'
 
 # Merge duplicate entries
 def merge():
-    newname = 'new-' + name
     merged = dict()
     with CSVReader(name) as f:
-        lines = [ f.header ]
+        save = f.header
         for line in f:
-            first = f.systems.get(f.sys, None)
+            first = merged.get(f.sys, None)
             if first is None:
                 merged[f.sys] = line
-                lines.append(line)
-            else:
-                ### MERGE FIELDS
-                merge_lines(first, line)
-                line[0] = 'SKIP MERGED ' + line[0]
-                lines.append(line)
-    with open(newname, 'w') as f:
-        writer = csv.writer(f)
-        writer.writerows(lines)
-        for k,v in merged:
-            write.writerow(v)
+                continue
+            ### MERGE FIELDS
+            first[0] += ' ' + getwhen(line)
+            first[1] += ' ' + getwho(line)
+            for i in range(2, len(first)):
+                first[i] = merge_field(first[i], line[i])
+            line[0] = 'SKIP MERGED ' + line[0]
+    with open('merged-' + name, 'w') as f:
+        wr = csv.writer(f)
+        wr.writerow(save)
+        for v in merged.values():
+            wr.writerow(v)
 
+def cycles():
+    # Open the output files, generate the header line for each
+    with (open("mg/nodes.csv", "w") as nodes,
+          open("mg/edges.csv", "w") as edges):
+        print("id,name,when,who", file=nodes)
+        print("from,to", file=edges)
+        with CSVReader(name) as f:
+            for line in f:
+                when = getwhen(line)
+                who = getwho(line)
+                me = f.line_num()
+                print(f"{f.sys},{me},{when},{who}", file=nodes)
+                line = line[2:]
+                for i in range(0, len(line)):
+                    if line[i].find("I depend on") > -1:
+                        print(f"{me},{i}", file=edges)
+                    if line[i].find("depends on me") > -1:
+                        print(f"{i},{me}", file=edges)
 
 # Parse JCL.
 parser = argparse.ArgumentParser(
@@ -226,10 +265,12 @@ parser = argparse.ArgumentParser(
                 description='ALSOF CIRCDEP survey results parser')
 parser.add_argument('-f', '-in', dest='name', default=name,
                     help='Input file')
+parser.add_argument('-c', '-cycles', action='store_true',
+                    help='Generate data for full circular dependencies')
 parser.add_argument('-d', '-dups', action='store_true',
                     help='Report duplicate entries')
 parser.add_argument('-m', '-merge', action='store_true',
-                    help='Merge dupicates to <infile>.new')
+                    help='Merge dupicates to merged-<infile>')
 parser.add_argument('-s', '-self', action='store_true',
                     help='List self-reported circular dependencies')
 d = vars(parser.parse_args())
@@ -242,3 +283,5 @@ if d['m']:
     merge()
 if d['s']:
     self_reported()
+if d['c']:
+    cycles()

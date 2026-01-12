@@ -1,4 +1,3 @@
 LOAD CSV FROM "file:///edges.csv" WITH HEADER AS row
-MATCH (a:Node {id: row.from}), (b:Node {id: row.to})
-MERGE (a)-[:DEPENDS_ON]->(b), (b)-[:DEPENDS_ON]->(a);
-
+    MATCH (a:Node {id: row.from}), (b:Node {id: row.to})
+    MERGE (a)-[:DEPENDS_ON]->(b);
