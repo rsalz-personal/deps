@@ -3,7 +3,7 @@ BlockStorage : app_blockstorage
 HostingDB_ProxySQL : DevCloud
 HostingDB_ProxySQL : Grafana
 HostingDB_ProxySQL : HostingDB_ProxySQL
-HostingDB_ProxySQL : Prometheus_AlertManager
+HostingDB_ProxySQL : PrometheusAlertMgr
 HostingDB_ProxySQL : Salt
 HostingDB_ProxySQL : Thanos
 HostingDB_ProxySQL : VictoriaMetrics
@@ -43,7 +43,7 @@ AdminBP : MigrationCloning
 AdminBP : NAIS
 AdminBP : ObjectStorageGen1
 AdminBP : ObjectStorageGen2
-AdminBP : Prometheus_AlertManager
+AdminBP : PrometheusAlertMgr
 AdminBP : SmartwallTDDSystems
 AdminBP : Stackscripts
 AdminBP : Vault
@@ -56,7 +56,7 @@ CF_API_billing : AdminBP
 API : DevCloud
 BAPI : AuthorativeNameservers
 BAPI : OpenTelemetry
-BAPI : Prometheus_AlertManager
+BAPI : PrometheusAlertMgr
 app_sre : Jumpboxes
 app_infra : InfraBoxes
 app_infra : Terraform
@@ -116,7 +116,7 @@ ObjectStorageGen1 : AdminBP
 ObjectStorageGen1 : API
 ObjectStorageGen1 : CloudManager
 ObjectStorageGen1 : Loki
-ObjectStorageGen1 : Prometheus_AlertManager
+ObjectStorageGen1 : PrometheusAlertMgr
 ObjectStorageGen1 : Thanos
 ObjectStorageGen1 : VictoriaMetrics
 Salt : Ingen
@@ -129,7 +129,7 @@ Salt : Salt
 Salt : AdminBP
 Salt : IPService
 Salt : kvdata_iptables
-Salt : Prometheus_AlertManager
+Salt : PrometheusAlertMgr
 Atlantis : Jumpboxes
 o11y_firechief_updater : Tapir
 ObjectStorageGen2 : DevCloud
@@ -159,13 +159,13 @@ Jumpboxes : AptCachers
 Jumpboxes : Atlantis
 Jumpboxes : Salt
 NTP : Artifactory
-NTP : Prometheus_AlertManager
+NTP : PrometheusAlertMgr
 OutboundMail : AdminBP
 OutboundMail : API
 OutboundMail : Edgegen
 OutboundMail : Github_and_bits
 InternalCA_SSL : LinodeJira
-InternalCA_SSL : Prometheus_AlertManager
+InternalCA_SSL : PrometheusAlertMgr
 InternalCA_SSL : Salt
 InternalCA_SSL : Vault
 ManagementResolvers : AuthorativeNameservers
