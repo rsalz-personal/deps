@@ -5,13 +5,13 @@ from contextlib import redirect_stdout
 
 name = "compdeps.csv"
 
-pat = re.compile(".*\[(.*)\]")
+pat = re.compile(r".*\[(.*)\]")
 skip = lambda line: ' '.join(line).find("SKIP") > -1
-getwhen = lambda line: line[0][0:9].replace('/', '-')
+getwhen = lambda line: line[0][0:10].replace('/', '-')
 getwho = lambda line: line[1].replace('@akamai.com', '')
 
-# A dictionary mapping names from the CSV file to names that are
-# useable in MemGraph.
+##  A dictionary mapping names from the CSV file to names that are
+##  useable in MemGraph.
 renames = {
     "Admin/BP" : "AdminBP",
     "Akamai Cloud Pulse" : "AkamaiCloudPulse",
@@ -117,7 +117,7 @@ class CSVReader:
     def __del__(self):
         if hasattr(self, 'src'):
             self.src.close()
-    # with statement methods
+    # "with" statement (context) methods
     def __enter__(self):
         return self
     def __exit__(self, exc_type, exc_value, traceback):
@@ -139,7 +139,7 @@ class CSVReader:
 ##
 ##
 
-# Find all self-reported circular dependencies
+##  Find all self-reported circular dependencies
 def self_reported():
     # List of (me, i-depend-on) tuples.
     pairs = []
@@ -184,7 +184,7 @@ def self_reported():
                 print(f'{ids[fr]},{ids[to]}')
                 print(f'{ids[to]},{ids[fr]}')
 
-# Find duplicate entries
+##  Find duplicate entries
 def find_duplicates():
     emails = dict()
     with (CSVReader(name, CSVReader.ARRAY) as f,
@@ -201,7 +201,7 @@ def find_duplicates():
             who = [ emails[n] for n in f.systems[d] ]
             print(f"{d} : {len(l)} : {l}\n\t{who}", file=out)
 
-## Merge two fields, return the new value
+##  Merge two fields, return the new value
 def merge_field(a, b):
     # If fields have the same value, return a
     if a == b:
@@ -216,30 +216,29 @@ def merge_field(a, b):
         return a
     if b.find(',') > -1:
         return b
-    return '"I depend on this, This depends on me"'
+    return 'I depend on this,This depends on me'
 
-# Merge duplicate entries
+##  Merge duplicate entries
 def merge():
     merged = dict()
     with CSVReader(name) as f:
-        save = f.header
+        header = f.header
         for line in f:
             first = merged.get(f.sys, None)
             if first is None:
                 merged[f.sys] = line
                 continue
-            ### MERGE FIELDS
-            first[0] += ' ' + getwhen(line)
-            first[1] += ' ' + getwho(line)
+            # Merge the fields
+            first[1] += '+' + getwho(line)
             for i in range(2, len(first)):
                 first[i] = merge_field(first[i], line[i])
-            line[0] = 'SKIP MERGED ' + line[0]
     with open('merged-' + name, 'w') as f:
         wr = csv.writer(f)
-        wr.writerow(save)
+        wr.writerow(header)
         for v in merged.values():
             wr.writerow(v)
 
+##  Find circular dependencies.
 def cycles():
     # Open the output files, generate the header line for each
     with (open("mg/nodes.csv", "w") as nodes,
@@ -259,7 +258,7 @@ def cycles():
                     if line[i].find("depends on me") > -1:
                         print(f"{i},{me}", file=edges)
 
-# Parse JCL.
+##  Parse JCL.
 parser = argparse.ArgumentParser(
                 prog='alsof',
                 description='ALSOF CIRCDEP survey results parser')
@@ -275,7 +274,7 @@ parser.add_argument('-s', '-self', action='store_true',
                     help='List self-reported circular dependencies')
 d = vars(parser.parse_args())
 
-# Import settings, act on them.
+##  Import settings, act on them.
 name = d['name']
 if d['d']:
     find_duplicates()
