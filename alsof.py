@@ -243,7 +243,7 @@ def cycles():
     # Open the output files, generate the header line for each
     with (open("mg/nodes.csv", "w") as nodes,
           open("mg/edges.csv", "w") as edges):
-        print("id,name,when,who", file=nodes)
+        print("name,id,when,who", file=nodes)
         print("from,to", file=edges)
         with CSVReader(name) as f:
             for line in f:
